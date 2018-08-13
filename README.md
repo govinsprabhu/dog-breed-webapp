@@ -9,14 +9,19 @@
 ## Front-end
 
  The front end is made with **Angular 5**. For running, go to the Dog-breed-UI directory inside the front-end folder, run following command
-**npm-install
-ng serve**
-Go to port **localhost:4200**
+ 
+```nodejs
+npm-install
+ng serve
+```
+Go to the URL **localhost:4200**
 
 ## Back-end
  
  The back-end code is written in **Python**. **Flask** is the server framework used. **Keras** is used to code the machine learning model. **Xception** model is used for CNN classification. You can run the application using the following command.
 
-**python Dog-breed.py**
+```python
+python Dog-breed.py
+```
 
-
+Now upload the image and breed will be displayed. Enjoy!
