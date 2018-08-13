@@ -1,0 +1,35 @@
+<div id='main-div'>
+    <mat-card id='main-header'>
+        <mat-card-title id='main-header-title'>Dog Breed Detector</mat-card-title>
+    </mat-card>
+    <div id='upload-div'>
+        <mat-card id='upload-mat-card'>
+            <mat-card-content>
+                <div id='upload-mat-card-div'>
+
+                    <button mat-raised-button (click)="openInput()">
+                        Select File to Upload
+                    </button>
+                    <input id="fileInput" hidden type="file" (change)="fileChange($event.target.files)">
+                    <button mat-button [disabled]="!ourFile" (click)="upload()" id='upload-button' style="color:white">Upload</button>
+                    <div id='show-image-div'>
+                        <img [src]="urlVariable" id='image-place' *ngIf="isHidden == true" />
+                    </div>
+                    <button mat-stroked-button (click)='submiImage()' id='submit-image-button' *ngIf="isHidden == true">Submit</button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+        <mat-card id='result-display-mat-card' *ngIf='query_started == true'>
+            <mat-card-content>
+                <div style="display:flex;justify-content:center;align-items:center;" *ngIf = 'progress_spinner == true'> 
+                    <mat-progress-spinner class="example-margin" [color]="'primary'" [mode]="'indeterminate'" [value]="'50'"></mat-progress-spinner>
+                </div>
+                <div id='result-display-mat-card-div' *ngIf='result != null'>
+                    <div style="display:flex;justify-content:center;align-items:center;">{{result.message}}</div>
+                    <div style="display:flex;justify-content:center;align-items:center;">{{result.result}}</div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+    </div>
+</div>
