@@ -35,13 +35,6 @@ app = Flask(__name__)
 app.config['UPLOAD_CONFIG'] = upload_folder
 ResNet50_model = ResNet50(weights='imagenet')
 dog_names = [item[20:-1] for item in sorted(glob("data/dog_images/train/*/"))]
-print('dog names ', len(dog_names))
-
-@app.route('/')
-def train():
-    return jsonify({'Name':'Govind Prabhu'})
-
-print('hello world')
 
 train_xception = None
 valid_xception = None
@@ -90,19 +83,20 @@ def load_xception_bottleneck():
 
 @app.route('/load_trained_weights')
 def load_trained_weights():
-    bottleneck_features = np.load('data/bottleneck_features/DogXceptionData.npz')
-    train_xception = bottleneck_features['train']
-    valid_xception = bottleneck_features['valid']
-    test_xception = bottleneck_features['test']
-    test_files, test_targets = load_dataset('data/dog_images/test')
+    #bottleneck_features = np.load('data/bottleneck_features/DogXceptionData.npz')
+    #train_xception = bottleneck_features['train']
+    #valid_xception = bottleneck_features['valid']
+    #test_xception = bottleneck_features['test']
+    #test_files, test_targets = load_dataset('data/dog_images/test')
+    #print(train_xception.shape[1:])
     global xception_model 
     xception_model = Sequential()
-    xception_model.add(GlobalAveragePooling2D(input_shape = train_xception.shape[1:]))
+    xception_model.add(GlobalAveragePooling2D(input_shape = (7, 7, 2048)))
     xception_model.add(Dense(133, activation = 'softmax'))
     xception_model.load_weights('saved_models/weights.best.RESNET50.hdf5')
-    xception_prediction = [np.argmax(xception_model.predict(np.expand_dims(feature, axis=0))) for feature in test_xception]
-    test_accuracy = 100 * np.sum(np.array(xception_prediction) == np.argmax(test_targets, axis=1)) / len(xception_prediction)
-    print('Test accuracy: %.4f%%' % test_accuracy)
+    #xception_prediction = [np.argmax(xception_model.predict(np.expand_dims(feature, axis=0))) for feature in test_xception]
+    #test_accuracy = 100 * np.sum(np.array(xception_prediction) == np.argmax(test_targets, axis=1)) / len(xception_prediction)
+    #print('Test accuracy: %.4f%%' % test_accuracy)
     return jsonify({'Status': 'Success_load_trained_weights'})
 
 
