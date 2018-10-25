@@ -29,4 +29,5 @@ python Dog-breed.py
 ![alt text](https://github.com/govinsprabhu/dog-breed-webapp/blob/master/images/dog.png)
  
  Else you added the image of Human
+ 
 ![alt text](https://github.com/govinsprabhu/dog-breed-webapp/blob/master/images/human.png)
