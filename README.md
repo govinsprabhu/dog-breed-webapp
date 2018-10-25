@@ -24,4 +24,5 @@ Go to the URL **localhost:4200**
 python Dog-breed.py
 ```
 
-Now upload the image and breed will be displayed. Enjoy!
+## Sample
+![alt text](https://github.com/govinsprabhu/dog-breed-webapp/blob/master/images/dog.png)
